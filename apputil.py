@@ -37,10 +37,12 @@ class GroupEstimate(object):
             how='left',
             on=self.columns
         )
+
+        
         
         # Count how many rows are missing (NaN predictions)
         missing_count = merged['label'].isnull().sum()
         if missing_count > 0:
             print(f"Warning: {missing_count} observation(s) contain unseen groups. Returning NaN for them.")
         
-        return merged['label'].tolist()
+        return merged['label'].to_numpy()
